@@ -17,9 +17,6 @@ namespace AAStudio
         #endregion
 
         #region "Control events"
-        #endregion
-
-        #region "Methods"
         private void btOK_Click(object sender, EventArgs e)
         {
             bool isValid = true;

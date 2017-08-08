@@ -31,6 +31,13 @@ namespace AAStudio
             ((SpriteControl)panelSprites.Controls[panelSprites.Controls.Count - 1]).Selected = true;
         }
 
+        public void AddSprite(ArtSprite newSprite)
+        {
+            _file.Sprites.Add(newSprite);
+            CreateSpriteControl(newSprite);
+            ((SpriteControl)panelSprites.Controls[panelSprites.Controls.Count - 1]).Selected = true;
+        }
+
         public void DeleteCurrentSprite()
         {
             if (_selectedSprite != null)

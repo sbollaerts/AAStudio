@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFile = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
-            this.panelPreview = new System.Windows.Forms.Panel();
             this.btUp = new System.Windows.Forms.Button();
             this.btLeft = new System.Windows.Forms.Button();
             this.btDown = new System.Windows.Forms.Button();
@@ -40,6 +40,9 @@
             this.btCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.sliderAlpha = new System.Windows.Forms.TrackBar();
             this.txtHeight = new System.Windows.Forms.NumericUpDown();
             this.txtWidth = new System.Windows.Forms.NumericUpDown();
@@ -48,9 +51,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.imgPicture = new System.Windows.Forms.PictureBox();
             this.myOpenDialog = new System.Windows.Forms.OpenFileDialog();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.myErrors = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panelPreview = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderAlpha)).BeginInit();
@@ -58,6 +60,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myErrors)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +69,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Filename:";
             // 
@@ -76,7 +80,7 @@
             this.txtFile.Location = new System.Drawing.Point(81, 21);
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
-            this.txtFile.Size = new System.Drawing.Size(635, 20);
+            this.txtFile.Size = new System.Drawing.Size(635, 22);
             this.txtFile.TabIndex = 1;
             this.txtFile.TabStop = false;
             // 
@@ -90,16 +94,6 @@
             this.btBrowse.Text = "...";
             this.btBrowse.UseVisualStyleBackColor = true;
             this.btBrowse.Click += new System.EventHandler(this.btBrowse_Click);
-            // 
-            // panelPreview
-            // 
-            this.panelPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelPreview.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panelPreview.Location = new System.Drawing.Point(624, 21);
-            this.panelPreview.Name = "panelPreview";
-            this.panelPreview.Size = new System.Drawing.Size(128, 64);
-            this.panelPreview.TabIndex = 1;
-            this.panelPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPreview_Paint);
             // 
             // btUp
             // 
@@ -158,6 +152,7 @@
             this.btOK.TabIndex = 2;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // btCancel
             // 
@@ -189,6 +184,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.panelPreview);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtName);
             this.groupBox2.Controls.Add(this.label4);
@@ -198,7 +194,6 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.panel1);
-            this.groupBox2.Controls.Add(this.panelPreview);
             this.groupBox2.Controls.Add(this.btUp);
             this.groupBox2.Controls.Add(this.btRight);
             this.groupBox2.Controls.Add(this.btLeft);
@@ -210,6 +205,34 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2. Select the area to import";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(624, 279);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Transparency";
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.Location = new System.Drawing.Point(624, 359);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(128, 22);
+            this.txtName.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(621, 343);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Name";
+            // 
             // sliderAlpha
             // 
             this.sliderAlpha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -217,7 +240,7 @@
             this.sliderAlpha.Location = new System.Drawing.Point(624, 295);
             this.sliderAlpha.Maximum = 100;
             this.sliderAlpha.Name = "sliderAlpha";
-            this.sliderAlpha.Size = new System.Drawing.Size(128, 45);
+            this.sliderAlpha.Size = new System.Drawing.Size(128, 56);
             this.sliderAlpha.TabIndex = 11;
             this.sliderAlpha.TickFrequency = 10;
             this.sliderAlpha.Value = 80;
@@ -238,7 +261,7 @@
             0,
             0});
             this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(60, 20);
+            this.txtHeight.Size = new System.Drawing.Size(60, 22);
             this.txtHeight.TabIndex = 9;
             this.txtHeight.Value = new decimal(new int[] {
             64,
@@ -263,7 +286,7 @@
             0,
             0});
             this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(60, 20);
+            this.txtWidth.Size = new System.Drawing.Size(60, 22);
             this.txtWidth.TabIndex = 7;
             this.txtWidth.Value = new decimal(new int[] {
             128,
@@ -279,7 +302,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(621, 258);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.Size = new System.Drawing.Size(53, 17);
             this.label3.TabIndex = 8;
             this.label3.Text = "Height:";
             // 
@@ -289,7 +312,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(621, 232);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Width:";
             // 
@@ -325,33 +348,20 @@
             this.myOpenDialog.Filter = "Image Files (*.gif;*.jpg;*.jpeg;*.bmp;*.wmf;*.png)|(*.gif;*.jpg;*.jpeg;*.bmp;*.wm" +
     "f;*.png)|All files (*.*)|*.*";
             // 
-            // label4
+            // myErrors
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(621, 343);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Name";
+            this.myErrors.ContainerControl = this;
             // 
-            // txtName
+            // panelPreview
             // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(624, 359);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(128, 20);
-            this.txtName.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(624, 279);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Transparency";
+            this.panelPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelPreview.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panelPreview.Location = new System.Drawing.Point(624, 21);
+            this.panelPreview.Name = "panelPreview";
+            this.panelPreview.Size = new System.Drawing.Size(128, 64);
+            this.panelPreview.TabIndex = 14;
+            this.panelPreview.TabStop = false;
+            this.panelPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPreview_Paint);
             // 
             // ImportImageDialog
             // 
@@ -382,6 +392,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myErrors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -391,7 +403,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFile;
         private System.Windows.Forms.Button btBrowse;
-        private System.Windows.Forms.Panel panelPreview;
         private System.Windows.Forms.Button btUp;
         private System.Windows.Forms.Button btLeft;
         private System.Windows.Forms.Button btDown;
@@ -411,5 +422,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ErrorProvider myErrors;
+        private System.Windows.Forms.PictureBox panelPreview;
     }
 }

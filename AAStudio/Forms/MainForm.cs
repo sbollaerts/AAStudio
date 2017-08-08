@@ -492,7 +492,7 @@ namespace AAStudio
             dlg = new ImportImageDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-
+                paneExplorer.AddSprite(dlg.Sprite);
             }
         }
     }

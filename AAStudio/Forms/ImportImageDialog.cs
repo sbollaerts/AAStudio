@@ -17,6 +17,8 @@ namespace AAStudio
         #region "Private members"
         private Image _source = null;
         private Bitmap _selection = null;
+        private Bitmap _preview = null;
+        private ArtSprite _sprite = null;
 
         private Brush _brushNotSelected = new SolidBrush(Color.FromArgb(64, 0, 0, 0));
         private Brush _brushSelected = new SolidBrush(Color.FromArgb(32, 255, 255, 255));
@@ -35,6 +37,13 @@ namespace AAStudio
         }
         #endregion
 
+        #region "Properties"
+        public ArtSprite Sprite
+        {
+            get { return _sprite; }
+        }
+        #endregion
+
         #region "Buttons Events"
         private void btBrowse_Click(object sender, EventArgs e)
         {
@@ -43,8 +52,13 @@ namespace AAStudio
                 txtFile.Text = myOpenDialog.FileName;
 
                 _source = Image.FromFile(txtFile.Text);
+
                 _selection = new Bitmap(_source.Width, _source.Height);
                 imgPicture.Image = _selection;
+
+                _preview = new Bitmap(128, 64);
+                panelPreview.Image = _preview;
+
                 _topX = 0;
                 _topY = 0;
                 panel1.AutoScrollPosition = new Point(0, 0);
@@ -187,33 +201,67 @@ namespace AAStudio
 
         private void panelPreview_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.Clear(Color.FromKnownColor(KnownColor.AppWorkspace));
-            if (_source == null)
+
+            if (_preview == null)
+            {
+                e.Graphics.Clear(Color.FromKnownColor(KnownColor.AppWorkspace));
                 return;
+            }
 
-            var gray_matrix = new float[][] {
-                new float[] { 0.299f, 0.299f, 0.299f, 0, 0 },
-                new float[] { 0.587f, 0.587f, 0.587f, 0, 0 },
-                new float[] { 0.114f, 0.114f, 0.114f, 0, 0 },
-                new float[] { 0,      0,      0,      1, 0 },
-                new float[] { 0,      0,      0,      0, 1 }
-            };
+            using (Graphics g = Graphics.FromImage(_preview))
+            {
+                g.Clear(Color.FromKnownColor(KnownColor.AppWorkspace));
 
-            var ia = new System.Drawing.Imaging.ImageAttributes();
-            ia.SetColorMatrix(new System.Drawing.Imaging.ColorMatrix(gray_matrix));
-            //            ia.SetThreshold(0.2f); // Change this threshold as needed
-            float t = sliderAlpha.Value / 100f;
-            ia.SetThreshold(t); // Change this threshold as needed
-            e.Graphics.Clear(Color.Black);
-            e.Graphics.DrawImage(
-                _selection,
-                new Rectangle(0, 0, (int)txtWidth.Value, (int)txtHeight.Value),
-                _topX,
-                _topY,
-                (int)txtWidth.Value,
-                (int)txtHeight.Value,
-                GraphicsUnit.Pixel,
-                ia);
+                var gray_matrix = new float[][] {
+                    new float[] { 0.299f, 0.299f, 0.299f, 0, 0 },
+                    new float[] { 0.587f, 0.587f, 0.587f, 0, 0 },
+                    new float[] { 0.114f, 0.114f, 0.114f, 0, 0 },
+                    new float[] { 0,      0,      0,      1, 0 },
+                    new float[] { 0,      0,      0,      0, 1 }};
+
+                var ia = new System.Drawing.Imaging.ImageAttributes();
+                ia.SetColorMatrix(new System.Drawing.Imaging.ColorMatrix(gray_matrix));
+                //            ia.SetThreshold(0.2f); // Change this threshold as needed
+                float t = sliderAlpha.Value / 100f;
+                ia.SetThreshold(t); // Change this threshold as needed
+
+                g.DrawImage(
+                    _selection,
+                    new Rectangle(0, 0, (int)txtWidth.Value, (int)txtHeight.Value),
+                    _topX,
+                    _topY,
+                    (int)txtWidth.Value,
+                    (int)txtHeight.Value,
+                    GraphicsUnit.Pixel,
+                    ia);
+            }
+            //e.Graphics.Clear(Color.FromKnownColor(KnownColor.AppWorkspace));
+            //if (_source == null)
+            //    return;
+
+            //var gray_matrix = new float[][] {
+            //    new float[] { 0.299f, 0.299f, 0.299f, 0, 0 },
+            //    new float[] { 0.587f, 0.587f, 0.587f, 0, 0 },
+            //    new float[] { 0.114f, 0.114f, 0.114f, 0, 0 },
+            //    new float[] { 0,      0,      0,      1, 0 },
+            //    new float[] { 0,      0,      0,      0, 1 }
+            //};
+
+            //var ia = new System.Drawing.Imaging.ImageAttributes();
+            //ia.SetColorMatrix(new System.Drawing.Imaging.ColorMatrix(gray_matrix));
+            ////            ia.SetThreshold(0.2f); // Change this threshold as needed
+            //float t = sliderAlpha.Value / 100f;
+            //ia.SetThreshold(t); // Change this threshold as needed
+            //e.Graphics.Clear(Color.Black);
+            //e.Graphics.DrawImage(
+            //    _selection,
+            //    new Rectangle(0, 0, (int)txtWidth.Value, (int)txtHeight.Value),
+            //    _topX,
+            //    _topY,
+            //    (int)txtWidth.Value,
+            //    (int)txtHeight.Value,
+            //    GraphicsUnit.Pixel,
+            //    ia);
         }
 
         private void sliderAlpha_Scroll(object sender, EventArgs e)
@@ -230,6 +278,42 @@ namespace AAStudio
                 e.SuppressKeyPress = true;
             }
 
+        }
+
+        private void btOK_Click(object sender, EventArgs e)
+        {
+            bool isValid = true;
+
+            myErrors.Clear();
+
+            if (_source == null)
+            {
+                myErrors.SetError(panelPreview, Properties.Resources.ERR_EMPTY);
+                isValid = false;
+            }
+
+            if (txtName.Text.Length == 0)
+            {
+                myErrors.SetError(txtName, Properties.Resources.ERR_EMPTY);
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                _sprite = new ArtSprite(
+                    txtName.Text,
+                    (int)txtWidth.Value,
+                    (int)txtHeight.Value,
+                    1);
+                for (int x = 0; x < (int)txtWidth.Value; x++)
+                    for (int y = 0; y < (int)txtHeight.Value; y++)
+                    {
+                        Color c = _preview.GetPixel(x, y);
+                        _sprite.SetPixel(x, y, c.R, false);
+                    }
+
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }

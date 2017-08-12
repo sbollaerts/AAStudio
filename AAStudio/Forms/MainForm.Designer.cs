@@ -147,21 +147,21 @@
             this.menuNew.Image = global::AAStudio.Properties.Resources.ic_palette_black_18dp_1x;
             this.menuNew.Name = "menuNew";
             this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(163, 22);
+            this.menuNew.Size = new System.Drawing.Size(160, 26);
             this.menuNew.Text = "&New";
             this.menuNew.Click += new System.EventHandler(this.menuNew_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(160, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 6);
             // 
             // menuOpen
             // 
             this.menuOpen.Image = global::AAStudio.Properties.Resources.ic_file_upload_black_18dp_1x;
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(163, 22);
+            this.menuOpen.Size = new System.Drawing.Size(160, 26);
             this.menuOpen.Text = "&Open";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
@@ -169,42 +169,41 @@
             // 
             this.menuImport.Name = "menuImport";
             this.menuImport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.menuImport.Size = new System.Drawing.Size(163, 22);
+            this.menuImport.Size = new System.Drawing.Size(160, 26);
             this.menuImport.Text = "Import...";
             this.menuImport.Click += new System.EventHandler(this.menuImport_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(160, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(157, 6);
             // 
             // menuSave
             // 
             this.menuSave.Image = global::AAStudio.Properties.Resources.ic_file_download_black_18dp_1x;
             this.menuSave.Name = "menuSave";
             this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuSave.Size = new System.Drawing.Size(163, 22);
+            this.menuSave.Size = new System.Drawing.Size(160, 26);
             this.menuSave.Text = "&Save";
             this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.menuSaveAs.Size = new System.Drawing.Size(163, 22);
+            this.menuSaveAs.Size = new System.Drawing.Size(160, 26);
             this.menuSaveAs.Text = "Save &as...";
             this.menuSaveAs.Click += new System.EventHandler(this.menuSaveAs_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(160, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(157, 6);
             // 
             // menuQuit
             // 
             this.menuQuit.Name = "menuQuit";
             this.menuQuit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuQuit.Size = new System.Drawing.Size(163, 22);
+            this.menuQuit.Size = new System.Drawing.Size(160, 26);
             this.menuQuit.Text = "&Quit";
             this.menuQuit.Click += new System.EventHandler(this.menuQuit_Click);
             // 
@@ -254,7 +253,7 @@
             // 
             this.menuToolbar.Name = "menuToolbar";
             this.menuToolbar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F9)));
-            this.menuToolbar.Size = new System.Drawing.Size(207, 26);
+            this.menuToolbar.Size = new System.Drawing.Size(203, 22);
             this.menuToolbar.Text = "&Toolbar";
             this.menuToolbar.Click += new System.EventHandler(this.menuToolbar_Click);
             // 
@@ -262,20 +261,20 @@
             // 
             this.menuStatusbar.Name = "menuStatusbar";
             this.menuStatusbar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F10)));
-            this.menuStatusbar.Size = new System.Drawing.Size(207, 26);
+            this.menuStatusbar.Size = new System.Drawing.Size(203, 22);
             this.menuStatusbar.Text = "&Statusbar";
             this.menuStatusbar.Click += new System.EventHandler(this.menuStatusbar_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(204, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(200, 6);
             // 
             // menuPaneExplorer
             // 
             this.menuPaneExplorer.Name = "menuPaneExplorer";
             this.menuPaneExplorer.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.menuPaneExplorer.Size = new System.Drawing.Size(207, 26);
+            this.menuPaneExplorer.Size = new System.Drawing.Size(203, 22);
             this.menuPaneExplorer.Text = "Explorer sidebar";
             this.menuPaneExplorer.Click += new System.EventHandler(this.menuPaneExplorer_Click);
             // 
@@ -283,7 +282,7 @@
             // 
             this.menuPaneInformation.Name = "menuPaneInformation";
             this.menuPaneInformation.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.menuPaneInformation.Size = new System.Drawing.Size(207, 26);
+            this.menuPaneInformation.Size = new System.Drawing.Size(203, 22);
             this.menuPaneInformation.Text = "Information sidebar";
             this.menuPaneInformation.Click += new System.EventHandler(this.menuPaneInformation_Click);
             // 
@@ -291,21 +290,21 @@
             // 
             this.menuPaneDebug.Name = "menuPaneDebug";
             this.menuPaneDebug.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.menuPaneDebug.Size = new System.Drawing.Size(207, 26);
+            this.menuPaneDebug.Size = new System.Drawing.Size(203, 22);
             this.menuPaneDebug.Text = "Debug window";
             this.menuPaneDebug.Click += new System.EventHandler(this.menuPaneDebug_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(204, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(200, 6);
             // 
             // menuShowGrid
             // 
             this.menuShowGrid.Image = global::AAStudio.Properties.Resources.ic_grid_on_black_18dp_1x;
             this.menuShowGrid.Name = "menuShowGrid";
             this.menuShowGrid.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.menuShowGrid.Size = new System.Drawing.Size(207, 26);
+            this.menuShowGrid.Size = new System.Drawing.Size(203, 22);
             this.menuShowGrid.Text = "Grid";
             this.menuShowGrid.Click += new System.EventHandler(this.menuShowGrid_Click);
             // 
@@ -334,7 +333,7 @@
             this.menuNone.Image = global::AAStudio.Properties.Resources.ic_visibility_black_18dp_1x;
             this.menuNone.Name = "menuNone";
             this.menuNone.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-            this.menuNone.Size = new System.Drawing.Size(231, 26);
+            this.menuNone.Size = new System.Drawing.Size(227, 22);
             this.menuNone.Text = "None";
             this.menuNone.Click += new System.EventHandler(this.menuNone_Click);
             // 
@@ -343,7 +342,7 @@
             this.menuDoSelect.Image = global::AAStudio.Properties.Resources.ic_photo_size_select_small_black_18dp_1x;
             this.menuDoSelect.Name = "menuDoSelect";
             this.menuDoSelect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.menuDoSelect.Size = new System.Drawing.Size(231, 26);
+            this.menuDoSelect.Size = new System.Drawing.Size(227, 22);
             this.menuDoSelect.Text = "Mark";
             this.menuDoSelect.Click += new System.EventHandler(this.menuDoSelect_Click);
             // 
@@ -352,14 +351,14 @@
             this.menuDoMove.Image = global::AAStudio.Properties.Resources.ic_open_with_black_18dp_1x;
             this.menuDoMove.Name = "menuDoMove";
             this.menuDoMove.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuDoMove.Size = new System.Drawing.Size(231, 26);
+            this.menuDoMove.Size = new System.Drawing.Size(227, 22);
             this.menuDoMove.Text = "Move";
             this.menuDoMove.Click += new System.EventHandler(this.menuToolMove_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(228, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(224, 6);
             // 
             // menuDoCopy
             // 
@@ -368,7 +367,7 @@
             this.menuDoCopyProject});
             this.menuDoCopy.Image = global::AAStudio.Properties.Resources.ic_content_copy_black_18dp_1x;
             this.menuDoCopy.Name = "menuDoCopy";
-            this.menuDoCopy.Size = new System.Drawing.Size(231, 26);
+            this.menuDoCopy.Size = new System.Drawing.Size(227, 22);
             this.menuDoCopy.Text = "Copy...";
             // 
             // menuDoCopySprite
@@ -390,7 +389,7 @@
             this.menuDoDuplicate.Image = global::AAStudio.Properties.Resources.ic_content_paste_black_18dp_1x;
             this.menuDoDuplicate.Name = "menuDoDuplicate";
             this.menuDoDuplicate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.menuDoDuplicate.Size = new System.Drawing.Size(231, 26);
+            this.menuDoDuplicate.Size = new System.Drawing.Size(227, 22);
             this.menuDoDuplicate.Text = "Duplicate sprite";
             this.menuDoDuplicate.Click += new System.EventHandler(this.menuDoDuplicate_Click);
             // 
@@ -401,7 +400,7 @@
             this.menuDoFlipVertical});
             this.menuDoFlip.Image = global::AAStudio.Properties.Resources.ic_flip_black_18dp_1x;
             this.menuDoFlip.Name = "menuDoFlip";
-            this.menuDoFlip.Size = new System.Drawing.Size(231, 26);
+            this.menuDoFlip.Size = new System.Drawing.Size(227, 22);
             this.menuDoFlip.Text = "Flip...";
             // 
             // menuDoFlipHorizontal
@@ -424,21 +423,21 @@
             this.menuDoVideoInvert.Name = "menuDoVideoInvert";
             this.menuDoVideoInvert.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.I)));
-            this.menuDoVideoInvert.Size = new System.Drawing.Size(231, 26);
+            this.menuDoVideoInvert.Size = new System.Drawing.Size(227, 22);
             this.menuDoVideoInvert.Text = "Video Invert";
             this.menuDoVideoInvert.Click += new System.EventHandler(this.menuDoVideoInvert_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(228, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(224, 6);
             // 
             // menuDrawPixel
             // 
             this.menuDrawPixel.Image = global::AAStudio.Properties.Resources.ic_mode_edit_black_18dp_1x;
             this.menuDrawPixel.Name = "menuDrawPixel";
             this.menuDrawPixel.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.menuDrawPixel.Size = new System.Drawing.Size(231, 26);
+            this.menuDrawPixel.Size = new System.Drawing.Size(227, 22);
             this.menuDrawPixel.Text = "Pen";
             this.menuDrawPixel.Click += new System.EventHandler(this.menuDrawPixel_Click);
             // 
@@ -447,7 +446,7 @@
             this.menuDrawLine.Image = global::AAStudio.Properties.Resources.ic_border_color_black_18dp_1x;
             this.menuDrawLine.Name = "menuDrawLine";
             this.menuDrawLine.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.menuDrawLine.Size = new System.Drawing.Size(231, 26);
+            this.menuDrawLine.Size = new System.Drawing.Size(227, 22);
             this.menuDrawLine.Text = "Line";
             this.menuDrawLine.Click += new System.EventHandler(this.menuDrawLine_Click);
             // 
@@ -456,7 +455,7 @@
             this.menuDrawRect.Image = global::AAStudio.Properties.Resources.draw_rect;
             this.menuDrawRect.Name = "menuDrawRect";
             this.menuDrawRect.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.menuDrawRect.Size = new System.Drawing.Size(231, 26);
+            this.menuDrawRect.Size = new System.Drawing.Size(227, 22);
             this.menuDrawRect.Text = "Rectangle";
             this.menuDrawRect.Click += new System.EventHandler(this.menuDrawRect_Click);
             // 
@@ -466,7 +465,7 @@
             this.menuDrawFilledRect.Name = "menuDrawFilledRect";
             this.menuDrawFilledRect.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.R)));
-            this.menuDrawFilledRect.Size = new System.Drawing.Size(231, 26);
+            this.menuDrawFilledRect.Size = new System.Drawing.Size(227, 22);
             this.menuDrawFilledRect.Text = "Filled rectangle";
             this.menuDrawFilledRect.Click += new System.EventHandler(this.menuDrawFilledRect_Click);
             // 

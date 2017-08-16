@@ -296,5 +296,14 @@ namespace AAStudio.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refreshing drawing area.
+        /// </summary>
+        internal static string MSG_DRAWING_REFRESH {
+            get {
+                return ResourceManager.GetString("MSG_DRAWING_REFRESH", resourceCulture);
+            }
+        }
     }
 }

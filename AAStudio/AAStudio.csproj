@@ -50,6 +50,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\OnNotifyEventArgs.cs" />
     <Compile Include="Forms\ImportImageDialog.cs">
       <SubType>Form</SubType>
     </Compile>

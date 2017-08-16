@@ -147,21 +147,21 @@
             this.menuNew.Image = global::AAStudio.Properties.Resources.ic_palette_black_18dp_1x;
             this.menuNew.Name = "menuNew";
             this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(160, 26);
+            this.menuNew.Size = new System.Drawing.Size(156, 22);
             this.menuNew.Text = "&New";
             this.menuNew.Click += new System.EventHandler(this.menuNew_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(153, 6);
             // 
             // menuOpen
             // 
             this.menuOpen.Image = global::AAStudio.Properties.Resources.ic_file_upload_black_18dp_1x;
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(160, 26);
+            this.menuOpen.Size = new System.Drawing.Size(156, 22);
             this.menuOpen.Text = "&Open";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
@@ -169,41 +169,41 @@
             // 
             this.menuImport.Name = "menuImport";
             this.menuImport.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.menuImport.Size = new System.Drawing.Size(160, 26);
+            this.menuImport.Size = new System.Drawing.Size(156, 22);
             this.menuImport.Text = "Import...";
             this.menuImport.Click += new System.EventHandler(this.menuImport_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(157, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(153, 6);
             // 
             // menuSave
             // 
             this.menuSave.Image = global::AAStudio.Properties.Resources.ic_file_download_black_18dp_1x;
             this.menuSave.Name = "menuSave";
             this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuSave.Size = new System.Drawing.Size(160, 26);
+            this.menuSave.Size = new System.Drawing.Size(156, 22);
             this.menuSave.Text = "&Save";
             this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // menuSaveAs
             // 
             this.menuSaveAs.Name = "menuSaveAs";
-            this.menuSaveAs.Size = new System.Drawing.Size(160, 26);
+            this.menuSaveAs.Size = new System.Drawing.Size(156, 22);
             this.menuSaveAs.Text = "Save &as...";
             this.menuSaveAs.Click += new System.EventHandler(this.menuSaveAs_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(157, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(153, 6);
             // 
             // menuQuit
             // 
             this.menuQuit.Name = "menuQuit";
             this.menuQuit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuQuit.Size = new System.Drawing.Size(160, 26);
+            this.menuQuit.Size = new System.Drawing.Size(156, 22);
             this.menuQuit.Text = "&Quit";
             this.menuQuit.Click += new System.EventHandler(this.menuQuit_Click);
             // 
@@ -840,6 +840,7 @@
             this.paneContent.Sprite = null;
             this.paneContent.TabIndex = 27;
             this.paneContent.OnMouseMoved += new AAStudio.MouseMovedHandler(this.paneContent_OnMouseMoved);
+            this.paneContent.OnNotify += new AAStudio.NotifyHandler(this.paneContent_OnNotify);
             // 
             // MainForm
             // 
@@ -860,6 +861,7 @@
             this.Text = "ARDUBOY Art Studio";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.myMenu.ResumeLayout(false);
             this.myMenu.PerformLayout();
             this.myStatusbar.ResumeLayout(false);

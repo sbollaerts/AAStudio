@@ -41,6 +41,7 @@ namespace AAStudio
 
         #region "Events"
         public event MouseMovedHandler OnMouseMoved;
+        public event NotifyHandler OnNotify;
         #endregion
 
         #region "Custom event handlers"
@@ -58,6 +59,9 @@ namespace AAStudio
 
             if (DesignMode)
                 return;
+
+            if (OnNotify != null)
+                OnNotify(this, new OnNotifyEventArgs("DrawingArea", Properties.Resources.MSG_DRAWING_REFRESH));
 
             e.Graphics.Clear(Color.FromKnownColor(KnownColor.AppWorkspace));
 

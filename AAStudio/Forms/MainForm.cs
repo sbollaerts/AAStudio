@@ -495,5 +495,15 @@ namespace AAStudio
                 paneExplorer.AddSprite(dlg.Sprite);
             }
         }
+
+        private void paneContent_OnNotify(object sender, OnNotifyEventArgs e)
+        {
+            paneDebug.Print(string.Format("[{0}] {1}", e.Source, e.Notification));
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            paneContent.Refresh();
+        }
     }
 }

@@ -15,18 +15,16 @@ namespace AAStudio
         private string _name = null;
         private int _width = 128;
         private int _height = 64;
-        private int _depth = 1;
         private string _note = null;
         private int[,] _data = new int[128, 64];
         #endregion
 
         #region "Constructors"
-        public ArtSprite(string name, int width, int height, int depth)
+        public ArtSprite(string name, int width, int height)
         {
             _name = CleanName(name);
             _width = width;
             _height = height;
-            _depth = depth;
         }
         #endregion
 
@@ -141,8 +139,7 @@ namespace AAStudio
             rc = new ArtSprite(
                 string.Format("{0}_copy", _name),
                 _width,
-                _height,
-                _depth);
+                _height);
             rc._note = _note;
             for (int x = 0; x < 128; x++)
                 for (int y = 0; y < 64; y++)
@@ -230,12 +227,6 @@ namespace AAStudio
         public Size Size
         {
             get { return new Size(_width, _height); }
-        }
-
-        [Category("Dimension"), Browsable(false)]
-        public int Depth
-        {
-            get { return _depth; }
         }
 
         [Category("Other"),

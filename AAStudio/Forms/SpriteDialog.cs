@@ -52,17 +52,6 @@ namespace AAStudio
                 isValid = false;
             }
 
-            if ((txtDepth.Text.Length == 0) || (int.TryParse(txtDepth.Text, out i) == false))
-            {
-                myErrors.SetError(txtDepth, Properties.Resources.ERR_NOT_NUMERIC);
-                isValid = false;
-            }
-            else if ((i < 1) || (i > 1))
-            {
-                myErrors.SetError(txtDepth, string.Format(Properties.Resources.ERR_OUT_OF_RANGE, 1, 1));
-                isValid = false;
-            }
-
             if (isValid == true)
                 DialogResult = DialogResult.OK;
         }
@@ -83,7 +72,6 @@ namespace AAStudio
                 txtName.Text = _sprite.Name;
                 txtWidth.Text = _sprite.Width.ToString();
                 txtHeight.Text = _sprite.Height.ToString();
-                txtDepth.Text = _sprite.Depth.ToString();
             }
         }
 
@@ -108,14 +96,6 @@ namespace AAStudio
             get
             {
                 return int.Parse(txtHeight.Text);
-            }
-        }
-
-        public int SpriteDepth
-        {
-            get
-            {
-                return int.Parse(txtDepth.Text);
             }
         }
         #endregion

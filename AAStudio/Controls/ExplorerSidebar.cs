@@ -21,11 +21,11 @@ namespace AAStudio
         #endregion
 
         #region "Methods"
-        public void AddSprite(string name, int width, int height, int depth)
+        public void AddSprite(string name, int width, int height)
         {
             ArtSprite newSprite;
 
-            newSprite = new ArtSprite(name, width, height, depth);
+            newSprite = new ArtSprite(name, width, height);
             _file.Sprites.Add(newSprite);
             CreateSpriteControl(newSprite);
             ((SpriteControl)panelSprites.Controls[panelSprites.Controls.Count - 1]).Selected = true;

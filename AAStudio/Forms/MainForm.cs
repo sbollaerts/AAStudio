@@ -188,8 +188,7 @@ namespace AAStudio
                 paneExplorer.AddSprite(
                     dlg.SpriteName,
                     dlg.SpriteWidth,
-                    dlg.SpriteHeight,
-                    dlg.SpriteDepth);
+                    dlg.SpriteHeight);
         }
 
         private void btAddSprite_Click(object sender, EventArgs e)

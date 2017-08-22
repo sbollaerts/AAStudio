@@ -303,8 +303,7 @@ namespace AAStudio
                 _sprite = new ArtSprite(
                     txtName.Text,
                     (int)txtWidth.Value,
-                    (int)txtHeight.Value,
-                    1);
+                    (int)txtHeight.Value);
                 for (int x = 0; x < (int)txtWidth.Value; x++)
                     for (int y = 0; y < (int)txtHeight.Value; y++)
                     {

@@ -42,10 +42,9 @@ namespace AAStudio
             {
                 lblName.Text = _sprite.Name;
                 lblDimension.Text = string.Format(
-                    "{0} x {1} (depth: {2})",
+                    "{0} x {1}",
                     _sprite.Width,
-                    _sprite.Height,
-                    _sprite.Depth);
+                    _sprite.Height);
             }
             else
             {

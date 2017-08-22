@@ -308,7 +308,7 @@ namespace AAStudio
                     for (int y = 0; y < (int)txtHeight.Value; y++)
                     {
                         Color c = _preview.GetPixel(x, y);
-                        _sprite.SetPixel(x, y, c.R, false);
+                        _sprite.SetPixel(x, y, (c.R == 255), false);
                     }
 
                 DialogResult = DialogResult.OK;

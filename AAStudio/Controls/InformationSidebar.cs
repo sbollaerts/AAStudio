@@ -68,7 +68,7 @@ namespace AAStudio
 
                 for (x = 0; x < _sprite.Width; x++)
                     for (y = 0; y < _sprite.Height; y++)
-                        if (_sprite.GetPixel(x, y) == 255)
+                        if (_sprite.GetPixel(x, y) == true)
                             e.Graphics.FillRectangle(
                                 brushForeground, 
                                 topX + x * scale, 

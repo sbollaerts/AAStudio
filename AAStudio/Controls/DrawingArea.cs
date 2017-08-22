@@ -82,7 +82,7 @@ namespace AAStudio
             if (_showGrid == true)
                 for (x = 0; x < _sprite.Width; x++)
                     for (y = 0; y < _sprite.Height; y++)
-                        if (_sprite.GetPixel(x, y) == 255)
+                        if (_sprite.GetPixel(x, y) == true)
                             e.Graphics.FillRectangle(brushPixel, _topX + x * _scale, _topY + y * _scale, _scale, _scale);
                         else
                             e.Graphics.FillRectangle(
@@ -91,17 +91,13 @@ namespace AAStudio
                                 _topY + y * _scale,
                                 _scale,
                                 _scale);
-            //else if ((x + y) % 2 == 0)
-            //    e.Graphics.FillRectangle(brushGridDark, _topX + x * _scale, _topY + y * _scale, _scale, _scale);
-            //else
-            //    e.Graphics.FillRectangle(brushGridLight, _topX + x * _scale, _topY + y * _scale, _scale, _scale);
             else
             {
                 e.Graphics.FillRectangle(brushNoGrid, _topX, _topY, _sprite.Width * _scale, _sprite.Height * _scale);
 
                 for (x = 0; x < _sprite.Width; x++)
                     for (y = 0; y < _sprite.Height; y++)
-                        if (_sprite.GetPixel(x, y) == 255)
+                        if (_sprite.GetPixel(x, y) == true)
                             e.Graphics.FillRectangle(brushPixel, _topX + x * _scale, _topY + y * _scale, _scale, _scale);
             }
 
@@ -166,29 +162,30 @@ namespace AAStudio
         private void DrawingArea_MouseUp(object sender, MouseEventArgs e)
         {
             List<Point> points;
-            int minX, maxX, minY, maxY, color;
+            int minX, maxX, minY, maxY;
 
             switch (_currentTool)
             {
                 case DrawingTools.DrawLine:
                     points = drawLine(_x0, _y0, _x1, _y1);
                     foreach (Point point in points)
-                        _sprite.SetPixel(point.X, point.Y, (_pressedLeft ? 255 : 0), false);
+                        _sprite.SetPixel(point.X, point.Y, _pressedLeft, false);
+                    _sprite.ForceRefresh();
                     break;
                 case DrawingTools.DrawRect:
                     points = drawRect(_x0, _y0, _x1, _y1);
                     foreach (Point point in points)
-                        _sprite.SetPixel(point.X, point.Y, (_pressedLeft ? 255 : 0), false);
+                        _sprite.SetPixel(point.X, point.Y, _pressedLeft, false);
+                    _sprite.ForceRefresh();
                     break;
                 case DrawingTools.DrawFilledRect:
                     minX = Math.Min(_x0, _x1);
                     maxX = Math.Max(_x0, _x1);
                     minY = Math.Min(_y0, _y1);
                     maxY = Math.Max(_y0, _y1);
-                    color = (_pressedLeft ? 255 : 0);
                     for (int x = minX; x <= maxX; x++)
                         for (int y = minY; y <= maxY; y++)
-                            _sprite.SetPixel(x, y, color, false);
+                            _sprite.SetPixel(x, y, _pressedLeft, false);
                     break;
             }
 
@@ -235,7 +232,7 @@ namespace AAStudio
                         switch (_currentTool)
                         {
                             case DrawingTools.DrawPixel:
-                                _sprite.SetPixel(_x1, _y1, (_pressedLeft ? 255 : 0));
+                                _sprite.SetPixel(_x1, _y1, _pressedLeft);
                                 break;
                         }
                     Refresh();

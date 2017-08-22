@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
@@ -16,7 +17,8 @@ namespace AAStudio
         private int _width = 128;
         private int _height = 64;
         private string _note = null;
-        private int[,] _data = new int[128, 64];
+        private BitArray _data = new BitArray(128 * 64);
+
         #endregion
 
         #region "Constructors"
@@ -46,17 +48,20 @@ namespace AAStudio
             throw new NotImplementedException();
         }
 
-        public int GetPixel(int x, int y)
+        public bool GetPixel(int x, int y)
         {
-            return _data[x, y];
+            return _data.Get(y * 128 + x);
         }
 
-        public void SetPixel(int x, int y, int value, bool refresh = true)
+        public void SetPixel(int x, int y, bool value, bool refresh = true)
         {
+            int offset;
+
+            offset = y * 128 + x;
             if ((x >= 0) && (x < _width) && (y >= 0) && (y < Height))
-                if (_data[x, y] != value)
+                if (_data.Get(offset) != value)
                 {
-                    _data[x, y] = value;
+                    _data.Set(offset, value);
                     if ((refresh == true) && (OnPictureChanged != null))
                         OnPictureChanged(this, new OnPictureChangeEventArgs());
                 }
@@ -103,14 +108,14 @@ namespace AAStudio
             {
                 for (int x = 0; x < _width; x++)
                 {
-                    b = (byte)((_data[x, y] == 0 ? 0 : 1)
-                        + ((_data[x, y + 1] == 0 ? 0 : 1) << 1)
-                        + ((_data[x, y + 2] == 0 ? 0 : 1) << 2)
-                        + ((_data[x, y + 3] == 0 ? 0 : 1) << 3)
-                        + ((_data[x, y + 4] == 0 ? 0 : 1) << 4)
-                        + ((_data[x, y + 5] == 0 ? 0 : 1) << 5)
-                        + ((_data[x, y + 6] == 0 ? 0 : 1) << 6)
-                        + ((_data[x, y + 7] == 0 ? 0 : 1) << 7));
+                    b = (byte)((_data.Get(y * 128 + x) == false ? 0 : 1)
+                        + ((_data.Get((y + 1) * 128 + x) == false ? 0 : 1) << 1)
+                        + ((_data.Get((y + 2) * 128 + x) == false ? 0 : 1) << 2)
+                        + ((_data.Get((y + 3) * 128 + x) == false ? 0 : 1) << 3)
+                        + ((_data.Get((y + 4) * 128 + x) == false ? 0 : 1) << 4)
+                        + ((_data.Get((y + 5) * 128 + x) == false ? 0 : 1) << 5)
+                        + ((_data.Get((y + 6) * 128 + x) == false ? 0 : 1) << 6)
+                        + ((_data.Get((y + 7) * 128 + x) == false ? 0 : 1) << 7));
                     rc.AppendFormat("0x{0:X}, ", b);
                 }
             }
@@ -125,9 +130,10 @@ namespace AAStudio
 
         public void VideoInvert()
         {
-            for (int x = 0; x < _width; x++)
-                for (int y = 0; y < _height; y++)
-                    _data[x, y] = _data[x, y] ^ 255;
+            _data.Not();
+            //for (int x = 0; x < _width; x++)
+            //    for (int y = 0; y < _height; y++)
+            //        _data.Set(y * 128 + x, !_data.Get(y * 128 + x));
             if (OnPictureChanged != null)
                 OnPictureChanged(this, new OnPictureChangeEventArgs());
         }
@@ -141,9 +147,10 @@ namespace AAStudio
                 _width,
                 _height);
             rc._note = _note;
-            for (int x = 0; x < 128; x++)
-                for (int y = 0; y < 64; y++)
-                    rc._data[x, y] = _data[x, y];
+            rc._data = (BitArray)_data.Clone();
+            //for (int x = 0; x < 128; x++)
+            //    for (int y = 0; y < 64; y++)
+            //        rc._data[x, y] = _data[x, y];
             return rc;
         }
 
@@ -168,27 +175,27 @@ namespace AAStudio
 
         private void FlipHorizontal()
         {
-            int swap;
+            bool swap;
 
             for (int x = 0; x < (_width / 2); x++)
                 for (int y = 0; y < _height; y++)
                 {
-                    swap = _data[x, y];
-                    _data[x, y] = _data[_width - 1 - x, y];
-                    _data[_width - 1 - x, y] = swap;
+                    swap = _data.Get(y * 128 + x);
+                    _data.Set(y * 128 + x, _data.Get((y * 128) + (_width - 1 - x)));
+                    _data.Set((y * 128) + (_width - 1 - x), swap);
                 }
         }
 
         private void FlipVertical()
         {
-            int swap;
+            bool swap;
 
             for (int x = 0; x < _width; x++)
                 for (int y = 0; y < (_height / 2); y++)
                 {
-                    swap = _data[x, y];
-                    _data[x, y] = _data[x, _height - 1 - y];
-                    _data[x, _height - 1 - y] = swap;
+                    swap = _data.Get(y * 128 + x);
+                    _data.Set(y * 128 + x, _data.Get((_height - 1 - y) * 128 + x));
+                    _data.Set((_height - 1 - y) * 128 + x, swap);
                 }
         }
         #endregion
@@ -245,7 +252,7 @@ namespace AAStudio
         }
 
         [Browsable(false)]
-        public int[,] Data
+        public BitArray Data
         {
             get { return _data; }
         }

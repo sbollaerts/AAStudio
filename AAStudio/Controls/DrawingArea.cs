@@ -1,11 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AAStudio
@@ -30,6 +26,10 @@ namespace AAStudio
 
         private int _topX, _topY, _scale, _x0, _y0, _x1, _y1;
         bool _pressedLeft, _pressedRight, _pressed;
+
+        private Stack<BitArray> _undo = new Stack<BitArray>();
+        private Stack<BitArray> _redo = new Stack<BitArray>();
+
         #endregion
 
         #region "Constructors"
@@ -55,10 +55,16 @@ namespace AAStudio
         private void DrawingArea_Paint(object sender, PaintEventArgs e)
         {
             int x, y;
+            int minX, maxX, minY, maxY;
             List<Point> points;
 
             if (DesignMode)
                 return;
+
+            minX = Math.Min(_x0, _x1);
+            maxX = Math.Max(_x0, _x1);
+            minY = Math.Min(_y0, _y1);
+            maxY = Math.Max(_y0, _y1);
 
             if (OnNotify != null)
                 OnNotify(this, new OnNotifyEventArgs("DrawingArea", Properties.Resources.MSG_DRAWING_REFRESH));
@@ -115,7 +121,7 @@ namespace AAStudio
                         }
                         break;
                     case DrawingTools.DrawRect:
-                        points = drawRect(_x0, _y0, _x1, _y1);
+                        points = drawRect(minX, minY, maxX, maxY);
                         foreach (Point point in points)
                         {
                             e.Graphics.FillRectangle(
@@ -126,10 +132,10 @@ namespace AAStudio
                     case DrawingTools.DrawFilledRect:
                         e.Graphics.FillRectangle(
                             brushTemp,
-                            _topX + Math.Min(_x0, _x1) * _scale,
-                            _topY + Math.Min(_y0, _y1) * _scale,
-                            ((Math.Max(_x0, _x1) - Math.Min(_x0, _x1)) + 1) * _scale,
-                            ((Math.Max(_y0, _y1) - Math.Min(_y0, _y1)) + 1) * _scale);
+                            _topX + minX * _scale,
+                            _topY + minY * _scale,
+                            ((maxX - minX) + 1) * _scale,
+                            ((maxY - minY) + 1) * _scale);
                         break;
                 }
         }
@@ -164,29 +170,37 @@ namespace AAStudio
             List<Point> points;
             int minX, maxX, minY, maxY;
 
-            switch (_currentTool)
+            if (_currentTool != DrawingTools.None)
             {
-                case DrawingTools.DrawLine:
-                    points = drawLine(_x0, _y0, _x1, _y1);
-                    foreach (Point point in points)
-                        _sprite.SetPixel(point.X, point.Y, _pressedLeft, false);
-                    _sprite.ForceRefresh();
-                    break;
-                case DrawingTools.DrawRect:
-                    points = drawRect(_x0, _y0, _x1, _y1);
-                    foreach (Point point in points)
-                        _sprite.SetPixel(point.X, point.Y, _pressedLeft, false);
-                    _sprite.ForceRefresh();
-                    break;
-                case DrawingTools.DrawFilledRect:
-                    minX = Math.Min(_x0, _x1);
-                    maxX = Math.Max(_x0, _x1);
-                    minY = Math.Min(_y0, _y1);
-                    maxY = Math.Max(_y0, _y1);
-                    for (int x = minX; x <= maxX; x++)
-                        for (int y = minY; y <= maxY; y++)
-                            _sprite.SetPixel(x, y, _pressedLeft, false);
-                    break;
+                _undo.Push((BitArray)_sprite.Data.Clone());
+                _redo.Clear();
+
+                minX = Math.Min(_x0, _x1);
+                maxX = Math.Max(_x0, _x1);
+                minY = Math.Min(_y0, _y1);
+                maxY = Math.Max(_y0, _y1);
+
+                switch (_currentTool)
+                {
+                    case DrawingTools.DrawLine:
+                        points = drawLine(_x0, _y0, _x1, _y1);
+                        foreach (Point point in points)
+                            _sprite.SetPixel(point.X, point.Y, _pressedLeft, false);
+                        _sprite.ForceRefresh();
+                        break;
+                    case DrawingTools.DrawRect:
+                        //                        points = drawRect(_x0, _y0, _x1, _y1);
+                        points = drawRect(minX, minY, maxX, maxY);
+                        foreach (Point point in points)
+                            _sprite.SetPixel(point.X, point.Y, _pressedLeft, false);
+                        _sprite.ForceRefresh();
+                        break;
+                    case DrawingTools.DrawFilledRect:
+                        for (int x = minX; x <= maxX; x++)
+                            for (int y = minY; y <= maxY; y++)
+                                _sprite.SetPixel(x, y, _pressedLeft, false);
+                        break;
+                }
             }
 
             _pressedLeft = false;
@@ -334,6 +348,34 @@ namespace AAStudio
 
             return rc;
         }
+
+        public void Undo()
+        {
+            if (_undo.Count != 0)
+            {
+                // Save the current state in the Redo queue
+                _redo.Push((BitArray)_sprite.Data.Clone());
+
+                // Pop the last state
+                _sprite.Restore(_undo.Pop());
+
+                Refresh();
+            }
+        }
+
+        public void Redo()
+        {
+            if (_redo.Count != 0)
+            {
+                // Save the current state in the Undo queue
+                _undo.Push((BitArray)_sprite.Data.Clone());
+
+                // Restore the state
+                _sprite.Restore(_redo.Pop());
+
+                Refresh();
+            }
+        }
         #endregion
 
         #region "Properties"
@@ -354,6 +396,8 @@ namespace AAStudio
                         _sprite.OnPictureChanged -= PictureChangedHandler;
 
                     _sprite = value;
+                    _undo.Clear();
+                    _redo.Clear();
 
                     if (_sprite != null)
                         _sprite.OnPictureChanged += PictureChangedHandler;

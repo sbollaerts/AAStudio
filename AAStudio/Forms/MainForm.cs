@@ -504,5 +504,15 @@ namespace AAStudio
         {
             paneContent.Refresh();
         }
+
+        private void menuUndo_Click(object sender, EventArgs e)
+        {
+            paneContent.Undo();
+        }
+
+        private void menuRedo_Click(object sender, EventArgs e)
+        {
+            paneContent.Redo();
+        }
     }
 }

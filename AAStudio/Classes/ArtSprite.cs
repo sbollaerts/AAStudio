@@ -94,6 +94,11 @@ namespace AAStudio
             return rc;
         }
 
+        public void Restore(BitArray backup)
+        {
+            _data = backup;
+        }
+
         public string Export()
         {
             StringBuilder rc;

@@ -22,7 +22,7 @@ namespace AAStudio
         public ArtFile()
         {
             _sprites = new List<ArtSprite>();
-            //_sprites.Add(new ArtSprite("no_name", 128, 64, 1));
+            _sprites.Add(new ArtSprite("no_name", 128, 64));
         }
         #endregion
 
